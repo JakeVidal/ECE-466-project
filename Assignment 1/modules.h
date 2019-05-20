@@ -46,7 +46,6 @@ SC_MODULE(clkregister){
 	}
 
 	SC_CTOR(clkregister){
-		SC_CTHREAD(update, CLK.pos());
-		reset_signal_is(RST, true);
+		SC_CTHREAD(update, CLK.pos()); reset_signal_is(RST, true);
 	}
 }

@@ -12,6 +12,9 @@ int sc_main(int argc, char* argv[]){
 	filter DUT("filter");
 	DUT.CLK(TestClk); DUT.RST(RST); DUT.XIN(XIN); DUT.YOUT(YOUT);
 
+	//filter2 DUT("filter2");
+	//DUT.CLK(TestClk); DUT.RST(RST); DUT.XIN(XIN); DUT.YOUT(YOUT);
+
 	stimulus STIM("stimulus");
 	STIM.CLK(TestClk); STIM.RST(RST); STIM.XIN(XIN);
 
