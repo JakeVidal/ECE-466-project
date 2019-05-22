@@ -28,5 +28,7 @@ int sc_main(int argc, char* argv[]){
 	sc_trace(TF, YOUT, "Y");
 
 	sc_start(200, SC_NS);
+        sc_close_vcd_trace_file(TF);
 	return 0;
-}
+	
+};

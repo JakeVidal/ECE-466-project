@@ -11,7 +11,7 @@ SC_MODULE(adder){
 	SC_CTOR(adder){
 		SC_METHOD(add); sensitive << NUM1 << NUM2;
 	}
-}
+};
 
 SC_MODULE(multiplier){
 	sc_in <float> NUM1, NUM2;
@@ -24,17 +24,18 @@ SC_MODULE(multiplier){
 	SC_CTOR(multiplier){
 		SC_METHOD(multiply); sensitive << NUM1 << NUM2;
 	}
-}
+};
 
 SC_MODULE(clkregister){
 	sc_in_clk CLK;
 	sc_in <bool> RST;
 	sc_in <float> IN;
 	sc_out <float> OUT;
+        sc_signal <float> VAL;
 
 	void update(){
-		sc_signal <float> VAL = 0;
-		OUT.write(0);
+	  VAL.write(0);
+	  OUT.write(0);
 
 		while(true){
 			VAL.write(IN.read());
@@ -48,4 +49,4 @@ SC_MODULE(clkregister){
 	SC_CTOR(clkregister){
 		SC_CTHREAD(update, CLK.pos()); reset_signal_is(RST, true);
 	}
-}
+};

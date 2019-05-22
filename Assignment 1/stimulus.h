@@ -7,14 +7,13 @@ SC_MODULE(stimulus){
 
 	void generate(){
 		RST.write(true); wait(); RST.write(false);
-		IN.write(1); wait();
-		IN.write(0); wait();
-		sc_stop();
+		XIN.write(1); wait();
+		XIN.write(0); wait();
 	}
 
-	SC_CTOR(){
+	SC_CTOR(stimulus){
 		SC_CTHREAD(generate, CLK.pos());
-		IN.initialize(0);
+		XIN.initialize(0);
 		RST.initialize(false);
 	}
-}
+};
