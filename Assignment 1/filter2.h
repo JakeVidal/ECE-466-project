@@ -16,8 +16,9 @@ SC_MODULE(filter2){
 	}
 
 	void update(){
-		sc_signal <float> VAL1 = 0;
-		sc_signal <float> VAL2 = 0;		
+		sc_signal <float> VAL1, VAL2;
+		VAL1.write(0);
+		VAL2.write(0);	
 		Z1_OUT.write(0);
 		Z2_OUT.write(0);
 
@@ -36,6 +37,6 @@ SC_MODULE(filter2){
 		SC_METHOD(inout); sensitive << XIN << Z1_OUT << Z2_OUT;
 		SC_CTHREAD(update, CLK.pos()); reset_signal_is(RST, true);
 	}
-}
+};
 
 //might need to add initial values
