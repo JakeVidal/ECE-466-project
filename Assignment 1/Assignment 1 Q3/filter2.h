@@ -16,27 +16,20 @@ SC_MODULE(filter2){
 	}
 
 	void update(){
-		sc_signal <float> VAL1, VAL2;
-		VAL1.write(0);
-		VAL2.write(0);	
 		Z1_OUT.write(0);
 		Z2_OUT.write(0);
 
 		while(true){
-			VAL1.write(Z1_IN.read());
-			VAL2.write(Z2_IN.read());
-
+			Z1_OUT.write(Z1_IN.read());
+			Z2_OUT.write(Z2_IN.read());
+			
 			wait();
-
-			Z1_OUT.write(VAL1.read());
-			Z2_OUT.write(VAL2.read());
 		}
 	}
 
-	SC_CTOR(adder){
+	SC_CTOR(filter2){
 		SC_METHOD(inout); sensitive << XIN << Z1_OUT << Z2_OUT;
 		SC_CTHREAD(update, CLK.pos()); reset_signal_is(RST, true);
 	}
 };
 
-//might need to add initial values

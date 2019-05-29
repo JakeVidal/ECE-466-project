@@ -31,18 +31,14 @@ SC_MODULE(clkregister){
 	sc_in <bool> RST;
 	sc_in <float> IN;
 	sc_out <float> OUT;
-        sc_signal <float> VAL;
 
 	void update(){
-	  VAL.write(0);
 	  OUT.write(0);
 
-		while(true){
-			VAL.write(IN.read());
-
+		while(true){			
+		        OUT.write(IN.read());
+		
 			wait();
-
-			OUT.write(VAL.read());
 		}
 	}
 

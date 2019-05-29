@@ -10,13 +10,14 @@ SC_MODULE(monitor){
 	sc_in <float> XIN, YOUT;
 
 	void output(){
-		cout << "Time  RST  XIN  YOUT" << endl; 
+	  cout << "Time" << setw(9) << "RST";
+	  cout << setw(6) << "XIN" << setw(12) << "YOUT" << endl;
 
 		while(true){
-			cout << sc_time_stamp() << setw(2) << RST.read();
-			cout << setw(2) << XIN.read() << setw(2) << YOUT.read() << endl;
+		  cout << setw(7) << sc_time_stamp() << setw(3) << RST.read();
+		  cout << setw(3) << XIN.read() << setw(13) << YOUT.read() << endl;
 
-			wait();
+	          wait();
 		}
 	}
 

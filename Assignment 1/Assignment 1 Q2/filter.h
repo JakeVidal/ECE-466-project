@@ -24,7 +24,7 @@ SC_MODULE(filter){
 
 	        mval1.write(-1);
 	        mval2.write(0.5);
-	        mval3.write(0);
+	        mval3.write(0.25);
 
 		A1.NUM1(XIN);
 		A1.NUM2(M1_A1);
