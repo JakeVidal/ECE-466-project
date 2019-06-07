@@ -32,3 +32,4 @@ SC_MODULE(filter2){
 		SC_CTHREAD(update, CLK.pos()); reset_signal_is(RST, true);
 	}
 };
+
