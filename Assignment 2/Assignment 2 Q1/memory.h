@@ -13,7 +13,7 @@ static sc_logic Z[8] = {SC_LOGIC_Z, SC_LOGIC_Z, SC_LOGIC_Z, SC_LOGIC_Z,
 		        SC_LOGIC_Z, SC_LOGIC_Z, SC_LOGIC_Z, SC_LOGIC_Z};
 
 SC_MODULE(mem_ctrl) {
-    // Ports
+
     sc_inout <sc_lv<8> > data; // Bidirectional port of logic-vector type
     sc_in < sc_uint<8> > addr;
     sc_in < sc_uint<2> > comm;
@@ -36,7 +36,7 @@ SC_MODULE(mem_ctrl) {
 		    switch (comm_s) {
 			case WTBYT:
 			    addr_s = addr.read(); data_s = data.read(); // Sample address & data ports
-			    cout << "@" << sc_time_stamp() << ": WTBYT, address = ”
+			    cout << "@" << sc_time_stamp() << ": WTBYT, address = "
 				 << addr_s << ", data = " << data_s << endl;
 			    wait(); memory[addr_s] = data_s; // After 1 cycle, write into memory space
 			    break;

@@ -13,7 +13,7 @@ static sc_logic Z[8] = {SC_LOGIC_Z, SC_LOGIC_Z, SC_LOGIC_Z, SC_LOGIC_Z,
 		        SC_LOGIC_Z, SC_LOGIC_Z, SC_LOGIC_Z, SC_LOGIC_Z};
 			
 SC_MODULE(testbench) {
-    // Ports
+
     sc_inout <sc_lv<8> > data; // Bidirectional port of logic-vector type
     sc_in < sc_uint<8> > addr;
     sc_in < sc_uint<2> > comm;
