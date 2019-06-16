@@ -1,4 +1,5 @@
-...
+#include "systemc.h"
+#include "fifo.h"
 
 template <class T> class consumer : public sc_module 
 {
