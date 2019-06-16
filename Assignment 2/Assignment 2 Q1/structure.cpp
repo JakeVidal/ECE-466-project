@@ -18,7 +18,7 @@ int sc_main(int argc, char* argv[])
     // _rv needed because of multiple drivers
   
     // Interconnects:
-    MC.clk(clk);
+    MC.clk(TestClk);
     MC.reset(reset);
     MC.data(data);
     MC.addr(addr);
@@ -26,7 +26,7 @@ int sc_main(int argc, char* argv[])
     MC.new_comm(new_comm);
     MC.complete(complete);
 
-    TB.clk(clk);
+    TB.clk(TestClk);
     TB.reset(reset);
     TB.data(data);
     TB.addr(addr);
@@ -36,7 +36,6 @@ int sc_main(int argc, char* argv[])
 
     sc_trace_file* TF = sc_create_vcd_trace_file("memory_traces");
     TF->set_time_unit(1, SC_NS);
-    sc_trace(TF, clk, "clk");
     sc_trace(TF, reset, "reset");
     sc_trace(TF, data, "data");
     sc_trace(TF, addr, "addr");

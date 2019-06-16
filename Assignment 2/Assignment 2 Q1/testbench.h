@@ -10,31 +10,31 @@
 using namespace std;
 
 static sc_logic Z[8] = {SC_LOGIC_Z, SC_LOGIC_Z, SC_LOGIC_Z, SC_LOGIC_Z,
-		        		SC_LOGIC_Z, SC_LOGIC_Z, SC_LOGIC_Z, SC_LOGIC_Z};
+						SC_LOGIC_Z, SC_LOGIC_Z, SC_LOGIC_Z, SC_LOGIC_Z};
 			
 SC_MODULE(testbench) {
 
-    sc_inout <sc_lv<8> > data; // Bidirectional port of logic-vector type
-    sc_in < sc_uint<8> > addr;
-    sc_in < sc_uint<2> > comm;
-    sc_in <bool> reset;
-    sc_in <bool> new_comm; // Input port signaling “start”
-    sc_out <bool> complete; // Output port signaling “done”
+	sc_inout <sc_lv<8> > data; // Bidirectional port of logic-vector type
+	sc_in < sc_uint<8> > addr;
+	sc_in < sc_uint<2> > comm;
+	sc_in <bool> reset;
+	sc_in <bool> new_comm; // Input port signaling “start”
+	sc_out <bool> complete; // Output port signaling “done”
  
-    sc_in_clk clk;
+	sc_in_clk clk;
 
-    void test_process() {
+	void test_process() {
 		sc_lv <8> data_s;  
 		while (true) {
-		    if (reset.read() == true) new_comm.write(false);
-		    else {
+			if (reset.read() == true) new_comm.write(false);
+			else {
 			data.write(0xFF); // set-up for WTBYT command
 			addr.write(0xFF);
 			comm.write(WTBYT);
 			wait();
 			new_comm.write(true); // send command to memory
 			while (complete.read() == false) {
-			    wait();
+				wait();
 			}
 			data.write(Z);
 			new_comm.write(false);
@@ -45,7 +45,7 @@ SC_MODULE(testbench) {
 			wait();
 			new_comm.write(true); // send command to memory
 			while (complete.read() == false) {
-			    wait();
+				wait();
 			}
 			data_s = data.read();
 			new_comm.write(false);
@@ -63,7 +63,7 @@ SC_MODULE(testbench) {
 			wait();
 			data.write(0xBB);
 			while (complete.read() == false) {
-			    wait();
+				wait();
 			}
 			data.write(Z);
 			new_comm.write(false);
@@ -82,15 +82,16 @@ SC_MODULE(testbench) {
 			wait();
 			data_s = data.read();
 			while (complete.read() == false) {
-			    wait();
+				wait();
 			}
 			new_comm.write(false);
 			wait();
-		    }
+			}
 		}
-    }
-    
-    SC_CTOR(testbench) { 
+	}
+	
+	SC_CTOR(testbench) { 
+		reset.initialize(false);
 		SC_CTHREAD(test_process, clk.pos()); 
-    }
+	}
 };

@@ -109,6 +109,7 @@ SC_MODULE(mem_ctrl) {
     }
 
     SC_CTOR(mem_ctrl) { 
+    	reset.initialize(false);
 		SC_CTHREAD(mem_process, clk.pos()); 
     }
 };
