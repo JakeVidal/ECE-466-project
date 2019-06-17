@@ -1,5 +1,5 @@
 #include "systemc.h"
-#include "fifo.h"
+#include "fifo_if.h"
 #include <iostream>
 #include <iomanip>
 using namespace std;
@@ -15,7 +15,7 @@ public:
             wait();
 
             if (in->read(data)) {
-                cout << "R " << data << " at " << sc_time_stamp() << endl;
+		cout << "@" << setw(6) << sc_time_stamp() << " write: X " << "read: " << data << endl;
             }
         }
     }

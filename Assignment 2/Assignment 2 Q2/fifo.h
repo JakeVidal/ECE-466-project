@@ -1,7 +1,7 @@
 #include "systemc.h"
 #include "fifo_if.h"
 
-template <class T, unsigned N> class fifo : public sc_module, public fifo_out_if <T>, public fifo_in_if <T> {
+template <class T, unsigned N> class fifo : public sc_module, public fifo_out_if<T>, public fifo_in_if<T> {
 
 private:
 	T data[N]; int free, ri, wi;
@@ -11,7 +11,8 @@ private:
 	T write_c;
 
 public:
-	fifo(sc_module_name nm): sc_module(nm) {
+	SC_HAS_PROCESS (fifo);
+	fifo(sc_module_name nm): sc_module(nm){
 		free = N; ri = 0; wi = 0;
 		read_flag = false; write_flag = false;
 		read_status = false; write_status = false;

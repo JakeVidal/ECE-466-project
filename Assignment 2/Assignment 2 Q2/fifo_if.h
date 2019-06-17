@@ -1,3 +1,6 @@
+#ifndef FIFO_IF_H
+#define FIFO_IF_H
+
 #include "systemc.h"
 
 template <class T> class fifo_out_if: virtual public sc_interface {
@@ -9,3 +12,5 @@ template <class T> class fifo_in_if: virtual public sc_interface {
   	public:
   	virtual bool read(T&) = 0;
 };
+
+#endif

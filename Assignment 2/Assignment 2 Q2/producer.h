@@ -1,5 +1,5 @@
 #include "systemc.h"
-#include "fifo.h"
+#include "fifo_if.h"
 #include <iostream>
 #include <iomanip>
 
@@ -16,7 +16,7 @@ public:
             wait();
 
             if (out->write(data)) {
-                cout << "W " << data << " at " << sc_time_stamp() << endl;
+		cout << "@" << setw(6) << sc_time_stamp() << " write: " << data << " read: X" << endl;
                 data = (data + 1) % 10;
             }
         }
