@@ -43,7 +43,7 @@ int sc_main(int argc, char* argv[])
     sc_trace(TF, new_comm, "new_comm");
     sc_trace(TF, complete, "complete");
 
-    sc_start(210, SC_NS);
+    sc_start(410, SC_NS);
     sc_close_vcd_trace_file(TF);
 
     return 0;

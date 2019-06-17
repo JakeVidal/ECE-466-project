@@ -36,57 +36,57 @@ SC_MODULE(mem_ctrl) {
 				    switch (comm_s) {
 					case WTBYT:
 					    addr_s = addr.read(); data_s = data.read(); // Sample address & data ports
-					    cout << "@" << sc_time_stamp() << ": WTBYT, address = "
+					    cout << "@" << setw(6) << sc_time_stamp() << ": memory WTBYT,    address = "
 						 << addr_s << ", data = " << data_s << endl;
 					    wait(); memory[addr_s] = data_s; // After 1 cycle, write into memory space
 					    break;
 					case RDBYT:
 					    addr_s = addr.read(); // Sample address port
 					    data_s = memory[addr_s]; // Read from memory space
-					    cout << "@" << sc_time_stamp()  << ": RDBYT, address = " 
-						 << addr_s << ", data = " << data_s << endl;
+					    cout << "@" << setw(6) << sc_time_stamp()  << ": memory RDBYT,    address = " 
+					    << addr_s << ", data = " << data_s << endl;
 					    wait(); data.write(data_s); // After 1 cycle, output to data port
 					    break;
 					case WTBLK:
 					    addr_s = addr.read(); data_s = data.read(); // Sample address & data ports
-					    cout << "@" << sc_time_stamp() << ": WTBLK-0, address = " 
+					    cout << "@" << setw(6) << sc_time_stamp() << ": memory WTBLK-0,    address = " 
 						 << addr_s << ", data = " << data_s << endl;
 					    wait(); memory[addr_s] = data_s; // After 1 cycle, write into memory space
 					    
 					    addr_s++; data_s = data.read(); // Increment address & sample data port
-					    cout << "@" << sc_time_stamp() << ": WTBLK-1, address = " 
+					    cout << "@" << setw(6) << sc_time_stamp() << ": memory WTBLK-1,    address = " 
 						 << addr_s << ", data = " << data_s << endl;
 					    wait(); memory[addr_s] = data_s; // After 1 cycle, write into memory space
 					    
 					    addr_s++; data_s = data.read(); // Increment address & sample data port
-					    cout << "@" << sc_time_stamp() << ": WTBLK-2, address = " 
+					    cout << "@" << setw(6) << sc_time_stamp() << ": memory WTBLK-2,    address = " 
 						 << addr_s << ", data = " << data_s << endl;
 					    wait(); memory[addr_s] = data_s; // After 1 cycle, write into memory space
 					    
 					    addr_s++; data_s = data.read(); // Increment address & sample data port
-					    cout << "@" << sc_time_stamp() << ": WTBLK-3, address = " 
+					    cout << "@" << setw(6) << sc_time_stamp() << ": memory WTBLK-3,    address = " 
 						 << addr_s << ", data = " << data_s << endl;
 					    wait(); memory[addr_s] = data_s; // After 1 cycle, write into memory space
 					    break;
 					case RDBLK:
 					    addr_s = addr.read(); // Sample address port
 					    data_s = memory[addr_s]; // Read from memory space
-					    cout << "@" << sc_time_stamp()  << ": RDBLK-1, address = " 
-						 << addr_s << ", data = " << data_s << endl;
+					    cout << "@" << setw(6) << sc_time_stamp()  << ": memory RDBLK-0,    address = " 
+					    << addr_s << ", data = " << data_s << endl;
 					    wait(); data.write(data_s); // After 1 cycle, output to data port
-
+					    					    
 					    addr_s++; data_s = memory[addr_s]; // Read from memory space
-					    cout << "@" << sc_time_stamp()  << ": RDBLK-2, address = " 
+					    cout << "@" << setw(6) << sc_time_stamp()  << ": memory RDBLK-1,    address = " 
 						 << addr_s << ", data = " << data_s << endl;
 					    wait(); data.write(data_s); // After 1 cycle, output to data port
 					    
 					    addr_s++; data_s = memory[addr_s]; // Read from memory space
-					    cout << "@" << sc_time_stamp()  << ": RDBLK-3, address = " 
+					    cout << "@" << setw(6) << sc_time_stamp()  << ": memory RDBLK-2,    address = " 
 						 << addr_s << ", data = " << data_s << endl;
 					    wait(); data.write(data_s); // After 1 cycle, output to data ports
 
 					    addr_s++; data_s = memory[addr_s]; // Read from memory space
-					    cout << "@" << sc_time_stamp()  << ": RDBLK-4, address = " 
+					    cout << "@" << setw(6) << sc_time_stamp()  << ": memory RDBLK-3,    address = " 
 						 << addr_s << ", data = " << data_s << endl;
 					    wait(); data.write(data_s); // After 1 cycle, output to data port
 					    break;
@@ -99,7 +99,7 @@ SC_MODULE(mem_ctrl) {
 					if (reset.read() == true) break;
 					wait();
 				    }
-				    if ((comm_s == RDBYT)||(comm_s == RDBLK)) data.write(Z); // Stop driving (a finished read)
+				    if ((comm_s == RDBYT) || (comm_s == RDBLK)) data.write(Z); // Stop driving (a finished read)
 				    complete.write(false);
 				}
 		    }
@@ -109,7 +109,6 @@ SC_MODULE(mem_ctrl) {
     }
 
     SC_CTOR(mem_ctrl) { 
-    	reset.initialize(false);
-		SC_CTHREAD(mem_process, clk.pos()); 
+	SC_CTHREAD(mem_process, clk.pos()); 
     }
 };
