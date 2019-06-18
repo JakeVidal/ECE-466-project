@@ -40,6 +40,10 @@ SC_MODULE(testbench) {
 			<< ", data = " << data_s << endl;
 			new_comm.write(false);
 			wait();
+			wait();
+			data_s = data.read();
+			cout << "@" << setw(6) << sc_time_stamp() << ": testbench check bus release"
+			<< ", data = " << data_s << endl;
 			
 			cout << "-----------------------------------------------------------------" << endl;
 			cout << " TEST WTBYT COMMAND ON UNPOPULATED ADDRESS 0:" << endl;
@@ -70,6 +74,10 @@ SC_MODULE(testbench) {
 			<< ", data = " << data_s << endl;
 			new_comm.write(false);
 			wait();
+			wait();
+			data_s = data.read();
+			cout << "@" << setw(6) << sc_time_stamp() << ": testbench check bus release"
+			<< ", data = " << data_s << endl;
 			
 			cout << "-----------------------------------------------------------------" << endl;
 			cout << " TEST RDBLK COMMAND UNPOPULATED ADDRESSES 15, 16, 17, 18:" << endl;
@@ -100,6 +108,10 @@ SC_MODULE(testbench) {
 			new_comm.write(false);
 			wait();
 			}
+			wait();
+			data_s = data.read();
+			cout << "@" << setw(6) << sc_time_stamp() << ": testbench check bus release"
+			<< ", data = " << data_s << endl;
 			
 			cout << "-----------------------------------------------------------------" << endl;
 			cout << " TEST WTBLK COMMAND UNPOPULATED ADDRESSES 15, 16, 17, 18:" << endl;
@@ -153,9 +165,13 @@ SC_MODULE(testbench) {
 			}
 			new_comm.write(false);
 			wait();
-			
-			data.write(Z);
 			wait();
+			data_s = data.read();
+			cout << "@" << setw(6) << sc_time_stamp() << ": testbench check bus release"
+			<< ", data = " << data_s << endl;
+			
+			wait();
+			data.write(Z);
 		}
 	}
 	
