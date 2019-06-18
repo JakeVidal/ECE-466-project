@@ -16,9 +16,9 @@ public:
             wait();
 
             if (out->write(data)) {
-		cout << "@" << setw(6) << sc_time_stamp() << " write: " << data << " read: X" << endl;
-                data = (data + 1) % 10;
+		cout << "@" << setw(6) << sc_time_stamp() << " write: " << data << " read:  " << endl;
             }
+            data = (data + 1) % 10;
         }
     }
 

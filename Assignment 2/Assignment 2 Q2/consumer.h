@@ -15,7 +15,7 @@ public:
             wait();
 
             if (in->read(data)) {
-		cout << "@" << setw(6) << sc_time_stamp() << " write: X " << "read: " << data << endl;
+		cout << "@" << setw(6) << sc_time_stamp() << " write:   " << "read: " << data << endl;
             }
         }
     }
