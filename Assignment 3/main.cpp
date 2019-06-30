@@ -1,3 +1,11 @@
+#include "systemc.h"
+#include "adder.h"
+#include "fork.h"
+#include "generator.h"
+#include "printer.h"
+#include "hw_fifo.h"
+#include "read_adapter.h"
+
 int sc_main (int argc, char* argv[]) {
 	DF_Const <int> constant ("constant", 1); // constant = 1
 	HW_Adder <int> adder ("adder");

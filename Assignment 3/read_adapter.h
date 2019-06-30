@@ -1,3 +1,5 @@
+#include "systemc.h"
+
 // This adapter converts the FIFO read interface into a bi-directional handshake protocol
 // It is a hierarchical channel that implements the sc_fifo_in_if interface
 // It has 4 ports: 1 for the data, 1 for the clock, and 2 for the control lines

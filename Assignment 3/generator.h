@@ -1,3 +1,5 @@
+#include "systemc.h"
+
 // Simple constant generator
 
 template <class T> SC_MODULE (DF_Const) {

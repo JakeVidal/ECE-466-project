@@ -1,3 +1,5 @@
+#include "systemc.h"
+
 template <class T> class hw_fifo : public sc_module {
 	public:
 		sc_in <bool> clk;

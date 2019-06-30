@@ -1,3 +1,8 @@
+#include "systemc.h"
+#include <iomanip>
+#include <iostream>
+
+using namespace std;
 // Simple dataflow module that runs for a given number of iterations
 
 template <class T> SC_MODULE (DF_Printer) {

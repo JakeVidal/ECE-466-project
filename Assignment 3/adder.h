@@ -1,3 +1,5 @@
+#include "systemc.h"
+
 // Simple dataflow adder
 
 template <class T> SC_MODULE (DF_Adder) {
