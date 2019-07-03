@@ -17,6 +17,20 @@ template <class T> class FIFO_READ_HS : public sc_module, public sc_fifo_in_if <
 
 		SC_CTOR (FIFO_READ_HS) { ready.initialize (false); }
 
-		void write(const T& x) {}
-		// Here, provide dummy implementations for unneeded sc_fifo_in_if <T> methods
+		virtual T read() {
+		    T tmp;
+		    read(tmp);
+		    return tmp;
+		}
+
+		// provide dummy implementations for unneeded
+		// sc_fifo_out_if<T> methods:
+		bool nb_read(T&)
+		{ assert(0); return false; }
+
+		int num_available() const
+		{ assert(0); return 0; }
+
+		const sc_event& data_written_event() const
+		{ static sc_event dummy; assert(0); return dummy; }	
 };
