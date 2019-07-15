@@ -16,6 +16,7 @@ SC_MODULE (hw_register)
 	SC_CTOR (hw_register)
 	{
 		SC_CTHREAD(run_hw_register, clk.pos());
+		out_data.initialize(0);
 	}
 };
 

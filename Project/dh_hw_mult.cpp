@@ -18,8 +18,7 @@
 void dh_hw_mult::process_hw_mult()
 {
 	
-    NN_DIGIT a[2], b, c, t, u;
-    NN_HALF_DIGIT bHigh, bLow, cHigh, cLow;
+    NN_DIGIT a[2];
 
     UINT2 current_state = WAIT_STATE;
     hw_mult_done.write(false);
@@ -62,7 +61,7 @@ void dh_hw_mult::process_hw_mult()
                 break;
 */
             case INPUT_STATE:
-		ld_b.write(1); ld_c.write(0);
+		ld_b.write(1); ld_c.write(1);
 		ld_u.write(0); ld_t.write(0);
 		ld_a0.write(0);	ld_a1.write(0);
 		u_mux_ctrl.write(0); t_mux_ctrl.write(0); a0_mux_ctrl.write(0);
@@ -108,6 +107,8 @@ void dh_hw_mult::process_hw_mult()
                 break;
 
             case OUTPUT_STATE:
+		a[0] = a0.read();
+		a[1] = a1.read();
                 out_data_low.write(a[0]);
                 out_data_high.write(a[1]);
                 hw_mult_done.write(true);

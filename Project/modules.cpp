@@ -5,16 +5,21 @@
 
 void hw_register::run_hw_register()
 {
-	out_data.write(0);
-
+	NN_DIGIT data_value = 0;
+	
 	while(true)
 	{
-		if (load_data.read() == 1)
-		{
-			out_data.write(in_data.read());
-		}
-
 		wait();
+		
+		if (load_data.read() == 1)
+		{	
+			data_value = in_data.read();
+			out_data.write(data_value);
+		}
+		else
+		{
+			out_data.write(data_value);
+		}
 	}
 }
 
