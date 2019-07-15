@@ -13,7 +13,7 @@ SC_MODULE (dh_hw_mult)
   sc_out<NN_DIGIT> out_data_low;
   sc_out<NN_DIGIT> out_data_high;
   sc_out<bool> hw_mult_done;
-
+/*
   //add more interconnection signals here
   sc_signal<NN_DIGIT> b_hh, b_lh, c_hh, c_lh, t, u, a0, a1;
   sc_signal<bool> ld_b, ld_c, ld_u, ld_t, ld_a0, ld_a1;
@@ -56,7 +56,7 @@ SC_MODULE (dh_hw_mult)
   hw_hh_extract t_hh_extract("t_hh_extract");
 
   //define module interconnections here
-  
+  */
   void process_hw_mult();
   
   SC_CTOR (dh_hw_mult)

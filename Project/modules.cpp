@@ -46,17 +46,17 @@ void hw_multiplexor::run_hw_multiplexor()
 	}
 }
 
-void hw_to_hh::run_to_hh()
+void hw_to_hh::run_hw_to_hh()
 {
 	out_data.write(TO_HIGH_HALF(in_data.read()));
 }
 
-void hw_hh_extract::run_hh_extract()
+void hw_hh_extract::run_hw_hh_extract()
 {
 	out_data.write(HIGH_HALF(in_data.read()));
 }
 
-void hw_comparator::run_comparator()
+void hw_comparator::run_hw_comparator()
 {
 	if (in_data_comparison.read() < in_data_reference.read())
 	{
