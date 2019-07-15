@@ -13,7 +13,7 @@ void dh_hw_mult::process_hw_mult()
     NN_DIGIT a[2], b, c, t, u;
     NN_HALF_DIGIT bHigh, bLow, cHigh, cLow;
 
-    UINT4 current_state = WAIT_STATE;
+    UINT2 current_state = WAIT_STATE;
     hw_mult_done.write(false);
 
     for (;;)
