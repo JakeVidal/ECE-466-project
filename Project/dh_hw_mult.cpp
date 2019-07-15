@@ -61,21 +61,37 @@ void dh_hw_mult::process_hw_mult()
                 break;
 */
             case INPUT_STATE:
+		ld_b.write(1); ld_c.write(0);
+		ld_u.write(0); ld_t.write(0);
+		ld_a0.write(0);	ld_a1.write(0);
+		u_mux_ctrl.write(0); t_mux_ctrl.write(0); a0_mux_ctrl.write(0);
+		a1_mux_1_ctrl.write(0);	a1_mux_2_ctrl.write(0);	a1_mux_3_ctrl.write(0);
                 break;
 
             case LOAD_STATE:
-                break;
+		ld_b.write(0); ld_c.write(0);
+		ld_u.write(1); ld_t.write(1);
+		ld_a0.write(1);	ld_a1.write(1);
+		break;
 
             case STAGE1_STATE:
-                break;
+		ld_u.write(0); ld_a0.write(0); ld_a1.write(0);
+		t_mux_ctrl.write(1);
+		break;
 
             case STAGE2_STATE:
+		ld_u.write(1); ld_t.write(0); ld_a1.write(1);
+		u_mux_ctrl.write(1); a1_mux_1_ctrl.write(lt_1.read());
                 break;
 
             case STAGE3_STATE:
+	      	ld_u.write(0); ld_a0.write(1); ld_a1.write(0);
+		a0_mux_ctrl.write(1);
                 break;
 
             case STAGE4_STATE:
+		ld_u.write(0); ld_a0.write(0); ld_a1.write(1);
+		a1_mux_2_ctrl.write(lt_2.read()); a1_mux_3_ctrl.write(1);
                 break;
 
             case OUTPUT_STATE:
