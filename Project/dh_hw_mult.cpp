@@ -3,15 +3,15 @@
 #include "dh_hw_mult.h"
 
 #define WAIT_STATE 0
-#define EXECUTE_STATE 1
 /*
+#define EXECUTE_STATE 1
+*/
 #define INPUT_STATE 1
 #define LOAD_STATE 2
 #define STAGE1_STATE 3
 #define STAGE2_STATE 4
 #define STAGE3_STATE 5
 #define STAGE4_STATE 6
-*/
 #define OUTPUT_STATE 7
 #define FINISH_STATE 8
 
@@ -36,7 +36,7 @@ void dh_hw_mult::process_hw_mult()
                   current_state = EXECUTE_STATE;
                 }
                 break;
-
+/*
             case EXECUTE_STATE:
                 b = in_data_1.read();
                 c = in_data_2.read();
@@ -59,7 +59,7 @@ void dh_hw_mult::process_hw_mult()
 
                 current_state = OUTPUT_STATE;
                 break;
-/*
+*/
             case INPUT_STATE:
                 break;
 
@@ -77,7 +77,7 @@ void dh_hw_mult::process_hw_mult()
 
             case STAGE4_STATE:
                 break;
-*/
+
             case OUTPUT_STATE:
                 out_data_low.write(a[0]);
                 out_data_high.write(a[1]);
