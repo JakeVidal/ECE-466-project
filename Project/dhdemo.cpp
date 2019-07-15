@@ -20,7 +20,6 @@ int sc_main(int argc , char *argv[])
 	DH_SW.hw_mult_enable (enable);		// enable hardware
 	DH_SW.hw_mult_done (done);		// hardware done
 	
-	
 	dh_hw_mult DH_HW_MULT("DH_Hardware_Multiplier");
 	DH_HW_MULT.in_data_1 (operand1);	// operand1 from software
 	DH_HW_MULT.in_data_2 (operand2);	// operand2 from software
