@@ -57,7 +57,6 @@ SC_MODULE (dh_hw_mult)
 
   //define module interconnections here
   
-
   void process_hw_mult();
   
   SC_CTOR (dh_hw_mult)

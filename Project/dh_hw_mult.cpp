@@ -24,8 +24,10 @@ void dh_hw_mult::process_hw_mult()
     UINT2 current_state = WAIT_STATE;
     hw_mult_done.write(false);
 
-    for (;;)
+    while (true)
     {  
+        wait();
+
         switch(current_state)
         {
             case WAIT_STATE:
@@ -92,8 +94,6 @@ void dh_hw_mult::process_hw_mult()
                 }
                 break;
         }
-
-        wait();
     }  	  
 }
 
