@@ -26,46 +26,24 @@ SC_MODULE (dh_hw_mult)
   
   void process_hw_mult();
   
-  SC_CTOR (dh_hw_mult)
+  hw_register b_register, c_register, u_register, t_register, a0_register, a1_register;
+  hw_splitter b_splitter, c_splitter;
+  hw_multiplier u_multiplier, t_multiplier, a0_multiplier, a1_multiplier;
+  hw_adder t_adder, a0_adder, a1_adder_1, a1_adder_2, a1_adder_3;
+  hw_multiplexor u_multiplexor, t_multiplexor, a0_multiplexor, a1_multiplexor_1, a1_multiplexor_2, a1_multiplexor_3;
+  hw_comparator t_comparator, a0_comparator;
+  hw_to_hh t_to_hh;
+  hw_hh_extract t_hh_extract;
+  
+  SC_CTOR (dh_hw_mult):
+  b_register("b_register"), c_register("c_register"), u_register("u_register"), t_register("t_register"), a0_register("a0_register"), a1_register("a1_register"),
+  b_splitter("b_splitter"), c_splitter("c_splitter"), u_multiplier("u_multiplier"), t_multiplier("t_multiplier"), a0_multiplier("a0_multiplier"), a1_multiplier("a1_multiplier"),
+  t_adder("t_adder"), a0_adder("a0_adder"), a1_adder_1("a1_adder_1"), a1_adder_2("a1_adder_2"), a1_adder_3("a1_adder_3"), u_multiplexor("u_multiplexor"),
+  t_multiplexor("t_multiplexor"), a0_multiplexor("a0_multiplexor"), a1_multiplexor_1("a1_multiplexor_1"), a1_multiplexor_2("a1_multiplexor_2"), a1_multiplexor_3("a1_multiplexor_3"),
+  t_comparator("t_comparator"), a0_comparator("a0_comparator"), t_to_hh("t_to_hh"),  t_hh_extract("t_hh_extract")
   {
     hh_1.write(0x10000);
     const_1.write(0x1);
-    
-    //instatiate modules here
-    hw_register b_register("b_register");
-    hw_register c_register("c_register");
-    hw_register u_register("u_register");
-    hw_register t_register("t_register");
-    hw_register a0_register("a0_register");
-    hw_register a1_register("a1_register");
-
-    hw_splitter b_splitter("b_splitter");
-    hw_splitter c_splitter("c_splitter");
-
-    hw_multiplier u_multiplier("u_multiplier");
-    hw_multiplier t_multiplier("t_multiplier");
-    hw_multiplier a0_multiplier("a0_multiplier");
-    hw_multiplier a1_multiplier("a1_multiplier");
-
-    hw_adder t_adder("t_adder");
-    hw_adder a0_adder("a0_adder");
-    hw_adder a1_adder_1("a1_adder_1");
-    hw_adder a1_adder_2("a1_adder_2");
-    hw_adder a1_adder_3("a1_adder_3");
-
-    hw_multiplexor u_multiplexor("u_multiplexor");
-    hw_multiplexor t_multiplexor("t_multiplexor");
-    hw_multiplexor a0_multiplexor("a0_multiplexor");
-    hw_multiplexor a1_multiplexor_1("a1_multiplexor_1");
-    hw_multiplexor a1_multiplexor_2("a1_multiplexor_2");
-    hw_multiplexor a1_multiplexor_3("a1_multiplexor_3");
-
-    hw_comparator t_comparator("t_comparator");
-    hw_comparator a0_comparator("a0_comparator");
-
-    hw_to_hh t_to_hh("t_to_hh");
-
-    hw_hh_extract t_hh_extract("t_hh_extract");
 
     //define module interconnections here
     b_register.clk(clk); b_register.in_data(in_data_1); b_register.load_data(ld_b); b_register.out_data(b);
@@ -101,7 +79,7 @@ SC_MODULE (dh_hw_mult)
     
     t_to_hh.in_data(t); t_to_hh.out_data(u_mux_t_to_hh);
 
-    t_hh_extract.in_data(t); t_hh_extract.out_data(a1_add_t_hh);
+    t_hh_extract.in_data(t); t_hh_extract.out_data(a1_t_hh);
     
     SC_CTHREAD (process_hw_mult, clk.pos());
   }

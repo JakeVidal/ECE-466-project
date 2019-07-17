@@ -30,7 +30,7 @@ SC_MODULE (hw_splitter)
 
 	SC_CTOR (hw_splitter)
 	{
-		SC_THREAD(run_hw_splitter);
+		SC_METHOD(run_hw_splitter);
 		sensitive << in_data;
 	}
 };
@@ -45,7 +45,7 @@ SC_MODULE (hw_multiplier)
 
 	SC_CTOR (hw_multiplier)
 	{
-		SC_THREAD(run_hw_multiplier);
+		SC_METHOD(run_hw_multiplier);
 		sensitive << in_data_1 << in_data_2;
 	}
 };
@@ -60,7 +60,7 @@ SC_MODULE (hw_adder)
 
 	SC_CTOR (hw_adder)
 	{
-		SC_THREAD(run_hw_adder);
+		SC_METHOD(run_hw_adder);
 		sensitive << in_data_1 << in_data_2;
 	}
 };
@@ -76,7 +76,7 @@ SC_MODULE (hw_multiplexor)
 
 	SC_CTOR (hw_multiplexor)
 	{
-		SC_THREAD(run_hw_multiplexor);
+		SC_METHOD(run_hw_multiplexor);
 		sensitive << in_data_1 << in_data_2 << control;
 	}
 };
@@ -90,7 +90,7 @@ SC_MODULE (hw_to_hh)
 
 	SC_CTOR (hw_to_hh)
 	{
-		SC_THREAD(run_hw_to_hh);
+		SC_METHOD(run_hw_to_hh);
 		sensitive << in_data;
 	}
 };
@@ -104,7 +104,7 @@ SC_MODULE (hw_hh_extract)
 
 	SC_CTOR (hw_hh_extract)
 	{
-		SC_THREAD(run_hw_hh_extract);
+		SC_METHOD(run_hw_hh_extract);
 		sensitive << in_data;
 	}
 };
@@ -119,7 +119,7 @@ SC_MODULE (hw_comparator)
 
 	SC_CTOR (hw_comparator)
 	{
-		SC_THREAD(run_hw_comparator);
+		SC_METHOD(run_hw_comparator);
 		sensitive << in_data_reference << in_data_comparison;
 	}
 };
