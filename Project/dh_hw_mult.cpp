@@ -30,6 +30,7 @@ void dh_hw_mult::process_hw_mult()
         switch(current_state)
         {
             case WAIT_STATE:
+		cout << "WAIT_STATE" << endl;
                 if (hw_mult_enable.read() == true)
                 {
                   //current_state = EXECUTE_STATE;
@@ -61,6 +62,7 @@ void dh_hw_mult::process_hw_mult()
                 break;
 */
             case INPUT_STATE:
+		cout << "INPUT_STATE" << endl;
 		ld_b.write(1); ld_c.write(1);
 		ld_u.write(0); ld_t.write(0);
 		ld_a0.write(0);	ld_a1.write(0);
@@ -71,6 +73,7 @@ void dh_hw_mult::process_hw_mult()
                 break;
 
             case LOAD_STATE:
+		cout << "LOAD_STATE" << endl;
 		ld_b.write(0); ld_c.write(0);
 		ld_u.write(1); ld_t.write(1);
 		ld_a0.write(1);	ld_a1.write(1);
@@ -79,6 +82,7 @@ void dh_hw_mult::process_hw_mult()
 		break;
 
             case STAGE1_STATE:
+		cout << "STAGE1_STATE" << endl;
 		ld_u.write(0); ld_a0.write(0); ld_a1.write(0);
 		t_mux_ctrl.write(1);
 		
@@ -86,6 +90,7 @@ void dh_hw_mult::process_hw_mult()
 		break;
 
             case STAGE2_STATE:
+		cout << "STAGE2_STATE" << endl;
 		ld_u.write(1); ld_t.write(0); ld_a1.write(1);
 		u_mux_ctrl.write(1); a1_mux_1_ctrl.write(lt_1.read());
 		
@@ -93,6 +98,7 @@ void dh_hw_mult::process_hw_mult()
                 break;
 
             case STAGE3_STATE:
+		cout << "STAGE3_STATE" << endl;
 	      	ld_u.write(0); ld_a0.write(1); ld_a1.write(0);
 		a0_mux_ctrl.write(1);
 		
@@ -100,6 +106,7 @@ void dh_hw_mult::process_hw_mult()
                 break;
 
             case STAGE4_STATE:
+		cout << "STAGE4_STATE" << endl;
 		ld_u.write(0); ld_a0.write(0); ld_a1.write(1);
 		a1_mux_2_ctrl.write(lt_2.read()); a1_mux_3_ctrl.write(1);
 		
@@ -112,11 +119,12 @@ void dh_hw_mult::process_hw_mult()
                 out_data_low.write(a[0]);
                 out_data_high.write(a[1]);
                 hw_mult_done.write(true);
-
+		cout << "OUTPUT_STATE: a[0] = " << a[0] << ", a[1] = " << a[1] << endl;
                 current_state = FINISH_STATE;
                 break;
 
             case FINISH_STATE:
+		cout << "FINISH_STATE" << endl;
                 if (hw_mult_enable.read() == false)
                 {
                     hw_mult_done.write(false);
