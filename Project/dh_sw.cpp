@@ -374,7 +374,7 @@ NN_DIGIT c
 
     a[0] = in_data_low.read();
     a[1] = in_data_high.read();
-
+    //cout << "a[0] = " << a[0] << ", a[1] = " << a[1] << endl;
     hw_mult_enable.write(false);  
     wait();
 }
