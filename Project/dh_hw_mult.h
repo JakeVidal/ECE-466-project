@@ -21,7 +21,7 @@ SC_MODULE (dh_hw_mult)
   sc_signal<NN_DIGIT> t_mult, t_add_u, t_mux_out;
   sc_signal<NN_DIGIT> a0_mult, a0_add_u, a0_mux_out;
   sc_signal<NN_DIGIT> a1_mult, a1_add_1_to_hh, a1_mux_out_1, a1_add_1, a1_mux_out_2, a1_t_hh, a1_add_t_hh, a1_mux_out_3;
-  sc_signal<bool> ld_b, ld_c, ld_u, ld_t, ld_a0, ld_a1, lt_1, lt_2, u_mux_ctrl, t_mux_ctrl, a0_mux_ctrl, a1_mux_1_ctrl, a1_mux_2_ctrl, a1_mux_3_ctrl;
+  sc_signal<bool> ld_b, ld_c, ld_u, ld_t, ld_a0, ld_a1, lt_1, lt_2, u_mux_ctrl, t_mux_ctrl, a0_mux_ctrl, a1_mux_1_ctrl, a1_mux_2_ctrl;
   sc_signal<UINT4> hh_1, const_1;
   
   void process_hw_mult();
@@ -30,7 +30,7 @@ SC_MODULE (dh_hw_mult)
   hw_splitter b_splitter, c_splitter;
   hw_multiplier u_multiplier, t_multiplier, a0_multiplier, a1_multiplier;
   hw_adder t_adder, a0_adder, a1_adder_1, a1_adder_2, a1_adder_3;
-  hw_multiplexor u_multiplexor, t_multiplexor, a0_multiplexor, a1_multiplexor_1, a1_multiplexor_2, a1_multiplexor_3;
+  hw_multiplexor u_multiplexor, t_multiplexor, a0_multiplexor, a1_multiplexor_1, a1_multiplexor_2;
   hw_comparator t_comparator, a0_comparator;
   hw_to_hh t_to_hh;
   hw_hh_extract t_hh_extract;
@@ -51,7 +51,7 @@ SC_MODULE (dh_hw_mult)
     u_register.clk(clk); u_register.in_data(u_mux_out); u_register.load_data(ld_u); u_register.out_data(u);
     t_register.clk(clk); t_register.in_data(t_mux_out); t_register.load_data(ld_t); t_register.out_data(t);
     a0_register.clk(clk); a0_register.in_data(a0_mux_out); a0_register.load_data(ld_a0); a0_register.out_data(a0);
-    a1_register.clk(clk); a1_register.in_data(a1_mux_out_3); a1_register.load_data(ld_a1); a1_register.out_data(a1);
+    a1_register.clk(clk); a1_register.in_data(a1_add_t_hh); a1_register.load_data(ld_a1); a1_register.out_data(a1);
     
     b_splitter.in_data(b); b_splitter.out_data_high(b_hh); b_splitter.out_data_low(b_lh);
     c_splitter.in_data(c); c_splitter.out_data_high(c_hh); c_splitter.out_data_low(c_lh); 
@@ -72,7 +72,6 @@ SC_MODULE (dh_hw_mult)
     a0_multiplexor.in_data_1(a0_mult); a0_multiplexor.in_data_2(a0_add_u); a0_multiplexor.control(a0_mux_ctrl); a0_multiplexor.out_data(a0_mux_out);
     a1_multiplexor_1.in_data_1(a1_mult); a1_multiplexor_1.in_data_2(a1_add_1_to_hh); a1_multiplexor_1.control(a1_mux_1_ctrl); a1_multiplexor_1.out_data(a1_mux_out_1);
     a1_multiplexor_2.in_data_1(a1_mux_out_1); a1_multiplexor_2.in_data_2(a1_add_1); a1_multiplexor_2.control(a1_mux_2_ctrl); a1_multiplexor_2.out_data(a1_mux_out_2);
-    a1_multiplexor_3.in_data_1(a1_mux_out_2); a1_multiplexor_3.in_data_2(a1_add_t_hh); a1_multiplexor_3.control(a1_mux_3_ctrl); a1_multiplexor_3.out_data(a1_mux_out_3);
     
     t_comparator.in_data_reference(u); t_comparator.in_data_comparison(t); t_comparator.less_than_signal(lt_1);
     a0_comparator.in_data_reference(u); a0_comparator.in_data_comparison(a0); a0_comparator.less_than_signal(lt_2);

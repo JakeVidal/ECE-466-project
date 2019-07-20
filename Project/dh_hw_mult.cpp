@@ -16,6 +16,7 @@ void dh_hw_mult::process_hw_mult()
 {
 	
     NN_DIGIT a[2];
+    int counter = 0;
 
     UINT2 current_state = WAIT_STATE;
     hw_mult_done.write(false);
@@ -55,7 +56,7 @@ void dh_hw_mult::process_hw_mult()
 		ld_u.write(0); ld_t.write(0);
 		ld_a0.write(0);	ld_a1.write(0);
 		u_mux_ctrl.write(0); t_mux_ctrl.write(0); a0_mux_ctrl.write(0);
-		a1_mux_1_ctrl.write(0);	a1_mux_2_ctrl.write(0);	a1_mux_3_ctrl.write(1);
+		a1_mux_1_ctrl.write(0);	a1_mux_2_ctrl.write(0);
 		
 		current_state = LOAD_STATE;
                 break;
@@ -146,7 +147,7 @@ void dh_hw_mult::process_hw_mult()
 		cout << "u mux = " << u_mux_ctrl.read() << ", t mux = " << t_mux_ctrl.read() << ", a[0] mux = " << a0_mux_ctrl.read() << ", a[1] mux 1 = " << a1_mux_1_ctrl.read() << ", a[1] mux 2 = " << a1_mux_2_ctrl.read() << ", a[1] mux 3 = " << a1_mux_3_ctrl.read() << endl;
 		*/
 		ld_u.write(0); ld_a0.write(0); ld_a1.write(1);
-		a1_mux_2_ctrl.write(lt_2.read()); a1_mux_3_ctrl.write(1);
+		a1_mux_2_ctrl.write(lt_2.read());
 		
 		current_state = OUTPUT_STATE;
                 break;
@@ -178,6 +179,12 @@ void dh_hw_mult::process_hw_mult()
                 {
                     hw_mult_done.write(false);
                     current_state = WAIT_STATE;
+                }
+
+                counter++;
+                if ((counter % 100) == 0)
+                {
+                    cout << "Multiplication count: " << counter << endl;
                 }
                 break;
         }
