@@ -39,7 +39,7 @@ SC_MODULE (dh_hw_mult)
   b_register("b_register"), c_register("c_register"), u_register("u_register"), t_register("t_register"), a0_register("a0_register"), a1_register("a1_register"),
   b_splitter("b_splitter"), c_splitter("c_splitter"), u_multiplier("u_multiplier"), t_multiplier("t_multiplier"), a0_multiplier("a0_multiplier"), a1_multiplier("a1_multiplier"),
   t_adder("t_adder"), a0_adder("a0_adder"), a1_adder_1("a1_adder_1"), a1_adder_2("a1_adder_2"), a1_adder_3("a1_adder_3"), u_multiplexor("u_multiplexor"),
-  t_multiplexor("t_multiplexor"), a0_multiplexor("a0_multiplexor"), a1_multiplexor_1("a1_multiplexor_1"), a1_multiplexor_2("a1_multiplexor_2"), a1_multiplexor_3("a1_multiplexor_3"),
+  t_multiplexor("t_multiplexor"), a0_multiplexor("a0_multiplexor"), a1_multiplexor_1("a1_multiplexor_1"), a1_multiplexor_2("a1_multiplexor_2"),
   t_comparator("t_comparator"), a0_comparator("a0_comparator"), t_to_hh("t_to_hh"),  t_hh_extract("t_hh_extract")
   {
     hh_1.write(0x10000);

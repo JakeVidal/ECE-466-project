@@ -182,7 +182,7 @@ void dh_hw_mult::process_hw_mult()
                 }
 
                 counter++;
-                if ((counter % 100) == 0)
+                if ((counter % 10) == 0)
                 {
                     cout << "Multiplication count: " << counter << endl;
                 }
