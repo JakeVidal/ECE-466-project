@@ -7,6 +7,7 @@
 
 #include "systemc.h"
 #include "dh_sw.h"
+#include <iostream>
 
 
 static unsigned char PADDING[64] = {

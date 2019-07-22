@@ -7,12 +7,12 @@ void hw_register::run_hw_register()
 {
 	while(true)
 	{
-		wait();
-		
 		if (load_data.read() == 1)
 		{	
 			out_data.write(in_data.read());
 		}
+		
+		wait();
 	}
 }
 
