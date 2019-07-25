@@ -3,11 +3,10 @@
 #include "dh_hw_mult.h"
 
 #define WAIT_STATE 0
-#define INPUT_STATE 1
-#define LOAD_STATE 2
-#define STAGE_STATE 3
-#define OUTPUT_STATE 4
-#define FINISH_STATE 5
+#define LOAD_STATE 1
+#define DEASSERT_STATE 2
+#define OUTPUT_STATE 3
+#define FINISH_STATE 4
 
 void dh_hw_mult::process_hw_mult()
 {
