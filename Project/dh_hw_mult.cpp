@@ -21,32 +21,27 @@ void dh_hw_mult::process_hw_mult()
             case WAIT_STATE:
                 if (hw_mult_enable.read() == true)
                 {
-		  current_state = INPUT_STATE;
+                	ld_b.write(1); ld_c.write(1);
+					ld_a0.write(0);	ld_a1.write(0);
+					a1_mux_1_ctrl.write(0);	a1_mux_2_ctrl.write(0);
+
+		  			current_state = LOAD_STATE;
                 }
                 break;
 
-            case INPUT_STATE:
-		ld_b.write(1); ld_c.write(1);
-		ld_a0.write(0);	ld_a1.write(0);
-		a1_mux_1_ctrl.write(0);	a1_mux_2_ctrl.write(0);
-		
-		current_state = LOAD_STATE;
-                break;
-
             case LOAD_STATE:
-		ld_b.write(0); ld_c.write(0);
-		ld_a0.write(1);	ld_a1.write(1);
+				ld_b.write(0); ld_c.write(0);
+				ld_a0.write(1);	ld_a1.write(1);
+				a1_mux_1_ctrl.write(lt_1.read()); a1_mux_2_ctrl.write(lt_2.read());
 		
-		current_state = STAGE_STATE;
-		break;
-
-            case STAGE_STATE:
-		ld_a0.write(0);
-		a1_mux_1_ctrl.write(lt_1.read()); a1_mux_2_ctrl.write(lt_2.read());
-		
-		current_state = OUTPUT_STATE;
+				current_state = DEASSERT_STATE;
                 break;
 
+            case DEASSERT_STATE:
+				ld_a0.write(0); ld_a1.write(0);
+				
+				current_state = OUTPUT_STATE;
+                break;
 
             case OUTPUT_STATE:
                 out_data_low.write(a0.read());
@@ -64,9 +59,7 @@ void dh_hw_mult::process_hw_mult()
                 }
                 break;
         }
-        
-        wait();
-	wait();
+		wait();
     }  	  
 }
 
