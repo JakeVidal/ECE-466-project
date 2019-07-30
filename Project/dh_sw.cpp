@@ -362,20 +362,24 @@ NN_DIGIT b,
 NN_DIGIT c
 )
 {
+    //notify hardware to start
     out_data_1.write(b);
     out_data_2.write(c);  
     hw_mult_enable.write(true);
 
+    //wait for hardware to complete
     while (true)
     {
       if (hw_mult_done.read() == true) break;
       wait();
     }
-
+    
+    //read hardware outputs and notify hardware to stop
     a[0] = in_data_low.read();
     a[1] = in_data_high.read();
     hw_mult_enable.write(false);  
     
+    //wait for hardware to complete
     while (true)
     {
       if (hw_mult_done.read() == false) break;
